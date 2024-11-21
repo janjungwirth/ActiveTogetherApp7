@@ -9,11 +9,13 @@ import { Registration } from './Interfaces/Registration';
 })
 export class BackendService {
 
-  constructor(private http: HttpClient, private storeService: StoreService) { }
+  constructor(private http: HttpClient, public storeService: StoreService) { }
 
-  public getCourses() {
+  public getCourses(){
     this.http.get<Course[]>('http://localhost:5000/courses?_expand=eventLocation').subscribe(data => {
-      this.storeService.courses = data;
+      data.forEach(value => {
+        this.storeService.courses.push(value);
+      });
     });
   }
 
@@ -26,7 +28,7 @@ export class BackendService {
       }
     };
 
-    this.http.get<Registration[]>(`http://localhost:5000/registrations?_expand=course&_page=${page}&_limit=2`, options).subscribe(data => {
+    this.http.get<Registration[]>(`http://localhost:5000/registrations?_expand=course&_page=${page}`, options).subscribe(data => {
       this.storeService.registrations = data.body!;
       this.storeService.registrationTotalCount = Number(data.headers.get('X-Total-Count'));
     });

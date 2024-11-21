@@ -4,11 +4,10 @@ import { StoreService } from '../../shared/store.service';
 import { BackendService } from '../../shared/backend.service';
 
 @Component({
-  selector: 'app-data',
-  standalone: true,
-  imports: [SharedModule],
-  templateUrl: './data.component.html',
-  styleUrl: './data.component.css'
+    selector: 'app-data',
+    imports: [SharedModule],
+    templateUrl: './data.component.html',
+    styleUrl: './data.component.css'
 })
 export class DataComponent {
 

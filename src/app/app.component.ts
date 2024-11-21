@@ -6,19 +6,20 @@ import { SharedModule } from './shared/shared.module';
 import { StoreService } from './shared/store.service';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, HeaderComponent, SharedModule],
-  providers: [BackendService, StoreService],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+    selector: 'app-root',
+    imports: [RouterOutlet, HeaderComponent, SharedModule],
+    providers: [BackendService, StoreService],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
 
-  constructor(private backendService: BackendService, public storeService: StoreService) {}
+  constructor(public backendService: BackendService, public storeService: StoreService) {
+  }
 
   ngOnInit(): void {
     this.backendService.getCourses();
     this.backendService.getRegistrations(this.storeService.currentPage);
+    console.log("AppComponent Init ausgeführt");
   }
 }

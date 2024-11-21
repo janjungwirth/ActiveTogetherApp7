@@ -1,11 +1,35 @@
 <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
     <h2>Zum Kurs anmelden!</h2>
-    <input placeholder="Name" type="input" formControlName="name"><br />
-    <input placeholder="Geburtsdatum" type="date" formControlName="birthdate"><br />
-    <select formControlName="courseId">
-        <option value="" disabled>Bitte auswählen</option>
-        <option *ngFor="let course of storeService.courses" [ngValue]="course.id">{{course.name}}, {{course.instructor}}</option>
-    </select>
 
-    <button type="submit">Erfassen</button>
+    <mat-form-field class="example-full-width">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Name" formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Email" formControlName="email">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" placeholder="YYYY/DD/MM" formControlName="birthdate">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Select</mat-label>
+        <mat-select formControlName="courseId">
+            <mat-option *ngFor="let course of storeService.courses" [value]="course.id">
+                {{course.name}}, {{course.instructor}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-checkbox class="example-margin" formControlName="notifications">
+        Check me to get Email Notifications
+    </mat-checkbox>
+
+    <button mat-button type="submit">Erfassen</button>
 </form>

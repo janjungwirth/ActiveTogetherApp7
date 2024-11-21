@@ -87,6 +87,46 @@
       "courseId": "_iL775a",
       "birthdate": "1995-02-23",
       "id": 3
+    },
+    {
+      "name": "asdf",
+      "courseId": "_iL775i",
+      "email": "asdf@gmail.com",
+      "birthdate": "2024-11-26T23:00:00.000Z",
+      "notifications": true,
+      "id": 4
+    },
+    {
+      "name": "asdf",
+      "courseId": "_iL775i",
+      "email": "asdf@gmail.com",
+      "birthdate": "2024-11-26T23:00:00.000Z",
+      "notifications": true,
+      "id": 5
+    },
+    {
+      "name": "asdf",
+      "courseId": "_iL775i",
+      "email": "asdf@gmail.com",
+      "birthdate": "2024-11-26T23:00:00.000Z",
+      "notifications": true,
+      "id": 6
+    },
+    {
+      "name": "ASD",
+      "courseId": "_iL775i",
+      "email": "test@test.at",
+      "birthdate": "2024-11-01T23:00:00.000Z",
+      "notifications": false,
+      "id": 7
+    },
+    {
+      "name": "Jan",
+      "courseId": "_iL775i",
+      "email": "test@test.at",
+      "birthdate": "2024-11-21T23:00:00.000Z",
+      "notifications": false,
+      "id": 8
     }
   ]
 }
