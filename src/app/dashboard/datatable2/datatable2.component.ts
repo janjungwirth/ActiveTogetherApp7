@@ -3,16 +3,17 @@ import { MatTableModule, MatTable } from '@angular/material/table';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
 import { MatSortModule, MatSort } from '@angular/material/sort';
 import { Datatable2DataSource } from './datatable2-datasource';
-import {Course} from "../shared/Interfaces/Course";
-import {StoreService} from "../shared/store.service";
-import {BackendService} from "../shared/backend.service";
+import {Course} from "../../shared/Interfaces/Course";
+import {StoreService} from "../../shared/store.service";
+import {BackendService} from "../../shared/backend.service";
+import {DatePipe, NgForOf} from "@angular/common";
 
 @Component({
   selector: 'app-datatable2',
   templateUrl: './datatable2.component.html',
   styleUrl: './datatable2.component.css',
   standalone: true,
-  imports: [MatTableModule, MatPaginatorModule, MatSortModule]
+    imports: [MatTableModule, MatPaginatorModule, MatSortModule, NgForOf, DatePipe]
 })
 export class Datatable2Component implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -33,21 +34,6 @@ export class Datatable2Component implements AfterViewInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
-  }
-
-  selectPage(i: any) {
-    let currentPage = i;
-    this.storeService.currentPage = i;
-    this.backendService.getRegistrations(currentPage);
-  }
-
-  public returnAllPages() {
-    var pagesCount = Math.ceil(this.storeService.registrationTotalCount / 2);
-    let res = [];
-    for (let i = 0; i < pagesCount; i++) {
-      res.push(i + 1);
-    }
-    return res;
   }
 
 }

@@ -3,9 +3,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
-import {Course} from "../shared/Interfaces/Course";
-import {StoreService} from "../shared/store.service";
-import {Registration} from "../shared/Interfaces/Registration";
+import {Course} from "../../shared/Interfaces/Course";
+import {StoreService} from "../../shared/store.service";
+import {Registration} from "../../shared/Interfaces/Registration";
 import {dateTimestampProvider} from "rxjs/internal/scheduler/dateTimestampProvider";
 
 
@@ -23,7 +23,6 @@ export class AnmeldungenDataSource extends DataSource<Registration> {
   constructor(private service:StoreService) {
     super();
     this.data = service.registrations;
-    console.log("data: " + this.data);
   }
 
   /**

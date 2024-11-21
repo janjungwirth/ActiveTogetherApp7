@@ -3,8 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
-import {Course} from "../shared/Interfaces/Course";
-import {StoreService} from "../shared/store.service";
+import {Course} from "../../shared/Interfaces/Course";
+import {StoreService} from "../../shared/store.service";
 
 
 /**

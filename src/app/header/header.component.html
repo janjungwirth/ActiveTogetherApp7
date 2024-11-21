@@ -1,6 +1,20 @@
-<div>
-    <h1>{{ title }}</h1>
-    <img src={{imagePath}}>&nbsp;&nbsp;
-    <a [routerLink]="['/dashboard']">Dashboard</a>&nbsp;&nbsp;
-    <a [routerLink]="['/about']">About</a>
+<div class="row">
+  <div class="col-md-4">
+    <div class="well">
+      <h1><img class="img-fluid" src={{imagePath}}>&nbsp;&nbsp;</h1>
+    </div>
+  </div>
+  <div class="col-md-8 text-center">
+    <div class="row">
+      <div class="col-md-12 ">
+        <div class="well"><h1>{{ title }}</h1></div>
+      </div>
+    </div>
+    <div class="row d-flex flex-row-reverse">
+      <div class="col-md-6">
+        <button mat-button [routerLink]="['/dashboard']" routerLinkActive="mat-accent">Dashboard</button>
+        <button mat-button [routerLink]="['/about']" routerLinkActive="mat-accent">About</button>
+      </div>
+    </div>
+  </div>
 </div>

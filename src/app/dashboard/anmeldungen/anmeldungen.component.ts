@@ -2,17 +2,18 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatTableModule, MatTable } from '@angular/material/table';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
 import { MatSortModule, MatSort } from '@angular/material/sort';
-import {StoreService} from "../shared/store.service";
-import {BackendService} from "../shared/backend.service";
+import {StoreService} from "../../shared/store.service";
+import {BackendService} from "../../shared/backend.service";
 import {AnmeldungenDataSource} from "./anmeldungen-datasource";
-import {Registration} from "../shared/Interfaces/Registration";
+import {Registration} from "../../shared/Interfaces/Registration";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-anmeldungen',
   templateUrl: './anmeldungen.component.html',
   styleUrl: './anmeldungen.component.css',
   standalone: true,
-  imports: [MatTableModule, MatPaginatorModule, MatSortModule]
+  imports: [MatTableModule, MatPaginatorModule, MatSortModule, DatePipe]
 })
 export class AnmeldungenComponent implements AfterViewInit {
 
@@ -33,22 +34,11 @@ export class AnmeldungenComponent implements AfterViewInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
-    console.log(this.dataSource);
   }
 
 
-  selectPage(i: any) {
-    let currentPage = i;
-    this.storeService.currentPage = i;
-    this.backendService.getRegistrations(currentPage);
-  }
-
-  public returnAllPages() {
-    var pagesCount = Math.ceil(this.storeService.registrationTotalCount / 2);
-    let res = [];
-    for (let i = 0; i < pagesCount; i++) {
-      res.push(i + 1);
-    }
-    return res;
+  translateKurs(courseId: string): string {
+    const course = this.storeService.courses.find(x => x.id === courseId);
+    return course?.name || 'Unbekannter Kurs';
   }
 }

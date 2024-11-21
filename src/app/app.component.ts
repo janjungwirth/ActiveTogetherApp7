@@ -20,6 +20,5 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.backendService.getCourses();
     this.backendService.getRegistrations(this.storeService.currentPage);
-    console.log("AppComponent Init ausgeführt");
   }
 }
