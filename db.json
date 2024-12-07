@@ -77,16 +77,12 @@
       "courseId": "_iL775j"
     },
     {
-      "name": "Julia Schabasser",
-      "courseId": "_iL775i",
-      "birthdate": "1995-02-23",
+      "name": "Jan Jungwirth",
+      "courseId": "_iL775j",
+      "email": "testEmail@email.at",
+      "birthdate": "2012-12-11T23:00:00.000Z",
+      "notifications": false,
       "id": 2
-    },
-    {
-      "name": "Julia Schabasser",
-      "courseId": "_iL775a",
-      "birthdate": "1995-02-23",
-      "id": 3
     }
   ]
 }

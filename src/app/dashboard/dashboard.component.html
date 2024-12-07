@@ -1,2 +1,19 @@
 <app-add-data></app-add-data>
-<app-data></app-data>
+<mat-accordion>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Kurse </mat-panel-title>
+      <mat-panel-description> Öffne mich für eine Übersicht an verfügbaren Kursen </mat-panel-description>
+    </mat-expansion-panel-header>
+    <app-datatable2></app-datatable2>
+  </mat-expansion-panel>
+  <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+    <mat-expansion-panel-header>
+      <mat-panel-title> Anmeldungen </mat-panel-title>
+      <mat-panel-description>
+        Öffne mich für eine Übersicht an angemeldeten Personen
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <app-anmeldungen></app-anmeldungen>
+  </mat-expansion-panel>
+</mat-accordion>
