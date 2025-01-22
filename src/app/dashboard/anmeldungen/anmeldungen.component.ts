@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import {AfterViewInit, Component, numberAttribute, ViewChild} from '@angular/core';
 import { MatTableModule, MatTable } from '@angular/material/table';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
 import { MatSortModule, MatSort } from '@angular/material/sort';
@@ -28,7 +28,7 @@ export class AnmeldungenComponent implements AfterViewInit {
   }
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name', 'birthdate', 'courseId', 'email', 'notifications'];
+  displayedColumns = ['id', 'name', 'birthdate', 'courseId', 'email', 'notifications', 'registrationdate', 'abmelden'];
 
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
@@ -40,5 +40,12 @@ export class AnmeldungenComponent implements AfterViewInit {
   translateKurs(courseId: string): string {
     const course = this.storeService.courses.find(x => x.id === courseId);
     return course?.name || 'Unbekannter Kurs';
+  }
+
+  confirmDeletion(id: number) {
+    const confirmation = confirm('Möchten Sie die Anmeldung wirklich löschen?');
+    if (confirmation) {
+      this.backendService.delete(id);
+    }
   }
 }

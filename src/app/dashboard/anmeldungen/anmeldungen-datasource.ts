@@ -76,6 +76,10 @@ export class AnmeldungenDataSource extends DataSource<Registration> {
       switch (this.sort?.active) {
         case 'name': return compare(a.name, b.name, isAsc);
         case 'id': return compare(+a.id, +b.id, isAsc);
+        case 'birthdate': return compare(+a.birthdate, +b.birthdate, isAsc);
+        case 'course': return compare(+a.course, +b.course, isAsc);
+        case 'email': return compare(+a.email, +b.email, isAsc);
+        case 'registrationdate': return compare(+a.registrationdate, +b.registrationdate, isAsc);
         default: return 0;
       }
     });
