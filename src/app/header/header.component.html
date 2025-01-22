@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-4">
     <div class="well">
-      <h1><img class="img-fluid" src={{imagePath}}>&nbsp;&nbsp;</h1>
+      <h1><img class="img-fluid" src={{imagePath}} alt="ActiveTogether Logo">&nbsp;&nbsp;</h1>
     </div>
   </div>
   <div class="col-md-8 text-center">
@@ -12,8 +12,8 @@
     </div>
     <div class="row d-flex flex-row-reverse">
       <div class="col-md-6">
-        <button mat-button [routerLink]="['/dashboard']" routerLinkActive="mat-accent">Dashboard</button>
-        <button mat-button [routerLink]="['/about']" routerLinkActive="mat-accent">About</button>
+        <button mat-button matTooltip="Gehe zur Startseite" [routerLink]="['/dashboard']" routerLinkActive="mat-accent">Dashboard</button>
+        <button mat-button matTooltip="Erfahre mehr über uns" [routerLink]="['/about']" routerLinkActive="mat-accent">About</button>
       </div>
     </div>
   </div>

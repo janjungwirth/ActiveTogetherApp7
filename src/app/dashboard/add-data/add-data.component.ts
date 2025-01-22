@@ -38,8 +38,16 @@ export class AddDataComponent implements OnInit {
       courseId: ['', Validators.required],
       email: ['', [Validators.email]],
       birthdate: [null, Validators.required],
-      notifications: [false],
-    })
+      notifications: [{value: false, disabled: true}],
+    });
+    this.registrationForm.get('email')?.valueChanges.subscribe(() => {
+      const emailFieldValid = this.registrationForm.get('email')?.valid;
+      if (emailFieldValid) {
+        this.registrationForm.get('notifications')?.enable();
+      } else {
+        this.registrationForm.get('notifications')?.disable();
+      }
+    });
   }
 
   onSubmit() {
