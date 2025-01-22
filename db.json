@@ -71,18 +71,22 @@
   ],
   "registrations": [
     {
-      "id": 1,
-      "name": "Testuser",
-      "birthdate": "2024-11-13",
-      "courseId": "_iL775j"
-    },
-    {
       "name": "Jan Jungwirth",
       "courseId": "_iL775j",
       "email": "testEmail@email.at",
       "birthdate": "2012-12-11T23:00:00.000Z",
+      "registrationdate": "2005-12-11T23:00:00.000Z",
       "notifications": false,
       "id": 2
+    },
+    {
+      "name": "Marcel",
+      "courseId": "_iL775a",
+      "email": "asdf@email.at",
+      "birthdate": "2003-12-11T23:00:00.000Z",
+      "registrationdate": "2003-12-11T23:00:00.000Z",
+      "notifications": true,
+      "id": 3
     }
   ]
 }
