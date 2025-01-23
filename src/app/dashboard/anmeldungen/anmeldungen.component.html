@@ -3,33 +3,33 @@
     <!-- Id Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
-      <td mat-cell *matCellDef="let row">{{row.id}}</td>
+      <td mat-cell *matCellDef="let row">{{ row.id }}</td>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-      <td mat-cell *matCellDef="let row">{{row.name}}</td>
+      <td mat-cell *matCellDef="let row">{{ row.name }}</td>
     </ng-container>
     <!-- birthdate Column -->
     <ng-container matColumnDef="birthdate">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>birthdate</th>
-      <td mat-cell *matCellDef="let row">{{row.birthdate | date:'dd.MM.yyyy'}}</td>
+      <td mat-cell *matCellDef="let row">{{ row.birthdate | date:'dd.MM.yyyy' }}</td>
     </ng-container>
     <!-- Name Column -->
     <ng-container matColumnDef="courseId">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Kurs</th>
-      <td mat-cell *matCellDef="let row">{{translateKurs(row.courseId)}}</td>
+      <td mat-cell *matCellDef="let row">{{ translateKurs(row.courseId) }}</td>
     </ng-container>
     <!-- EMail Column -->
     <ng-container matColumnDef="email">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>EMail</th>
-      <td mat-cell *matCellDef="let row">{{row.email}}</td>
+      <td mat-cell *matCellDef="let row">{{ row.email }}</td>
     </ng-container>
     <!-- notifications Column -->
     <ng-container matColumnDef="notifications">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Benachrichtigung</th>
-      <td mat-cell *matCellDef="let row">{{row.notifications?"Ja":"Nein"}}</td>
+      <td mat-cell *matCellDef="let row">{{ row.notifications ? "Ja" : "Nein" }}</td>
     </ng-container>
 
     <!-- Registration Date -->
@@ -41,10 +41,16 @@
     <!-- Abmelden Column -->
     <ng-container matColumnDef="abmelden">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Abmelden</th>
+
+      <!-- Abmelden Button -->
       <td mat-cell *matCellDef="let row">
         <button mat-button color="red" (click)="confirmDeletion(row.id)">
           Abmelden
         </button>
+        <!-- Overlay bei aktiver Löschoperation -->
+        <div class="row-overlay" *ngIf="isDeleting(row.id)">
+          <mat-spinner diameter="25"></mat-spinner>
+        </div>
       </td>
     </ng-container>
 
@@ -53,10 +59,10 @@
   </table>
 
   <mat-paginator #paginator
-      [length]="dataSource.data.length"
-      [pageIndex]="0"
-      [pageSize]="3"
-      [pageSizeOptions]="[3, 5, 10]"
-      aria-label="Select page">
+                 [length]="dataSource.data.length"
+                 [pageIndex]="0"
+                 [pageSize]="3"
+                 [pageSizeOptions]="[3, 5, 10]"
+                 aria-label="Select page">
   </mat-paginator>
 </div>

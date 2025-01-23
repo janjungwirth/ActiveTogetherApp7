@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, numberAttribute, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, numberAttribute, ViewChild} from '@angular/core';
 import { MatTableModule, MatTable } from '@angular/material/table';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
 import { MatSortModule, MatSort } from '@angular/material/sort';
@@ -6,14 +6,15 @@ import {StoreService} from "../../shared/store.service";
 import {BackendService} from "../../shared/backend.service";
 import {AnmeldungenDataSource} from "./anmeldungen-datasource";
 import {Registration} from "../../shared/Interfaces/Registration";
-import {DatePipe} from "@angular/common";
+import {DatePipe, NgIf} from "@angular/common";
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
 
 @Component({
   selector: 'app-anmeldungen',
   templateUrl: './anmeldungen.component.html',
   styleUrl: './anmeldungen.component.css',
   standalone: true,
-  imports: [MatTableModule, MatPaginatorModule, MatSortModule, DatePipe]
+  imports: [MatTableModule, MatPaginatorModule, MatSortModule, DatePipe, MatProgressSpinner, NgIf]
 })
 export class AnmeldungenComponent implements AfterViewInit {
 
@@ -22,8 +23,9 @@ export class AnmeldungenComponent implements AfterViewInit {
   @ViewChild(MatTable) table!: MatTable<Registration>;
   dataSource!: AnmeldungenDataSource;
   public page: number = 0;
+  deletingRows: string[] = [];
 
-  constructor(public storeService: StoreService, private backendService: BackendService) {
+  constructor(public storeService: StoreService, private backendService: BackendService, private cdr: ChangeDetectorRef) {
     this.dataSource = new AnmeldungenDataSource(storeService);
   }
 
@@ -42,10 +44,33 @@ export class AnmeldungenComponent implements AfterViewInit {
     return course?.name || 'Unbekannter Kurs';
   }
 
-  confirmDeletion(id: number) {
+
+  isDeleting(id: string): boolean {
+    return this.deletingRows.includes(id);
+  }
+
+  confirmDeletion(id: string) {
     const confirmation = confirm('Möchten Sie die Anmeldung wirklich löschen?');
+
     if (confirmation) {
-      this.backendService.delete(id);
+      // ID der Zeile zur aktiv löschenden Liste hinzufügen
+      this.deletingRows.push(id);
+      this.cdr.detectChanges();
+      // Backend-Löschaufruf
+      this.backendService.delete(id).subscribe({
+        next: () => {
+          // Erfolgreich gelöscht: Zeile aus der Datenquelle entfernen
+          this.dataSource.data = this.dataSource.data.filter(row => row.id !== id);
+        },
+        error: (err) => {
+          console.error('Fehler beim Löschen:', err);
+        },
+        complete: () => {
+          // ID aus der löschenden Liste entfernen
+          this.deletingRows = this.deletingRows.filter(deletingId => deletingId !== id);
+          this.cdr.detectChanges();
+        }
+      });
     }
   }
 }
