@@ -26,8 +26,7 @@ export class AddDataComponent implements OnInit {
     private formbuilder: FormBuilder,
     public storeService: StoreService,
     private backendService: BackendService
-  ) {
-  }
+  ) {}
 
   public registrationForm: any;
 

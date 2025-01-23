@@ -40,8 +40,7 @@ export class BackendService {
     })
   }
 
-  public delete(id: number) {
-    this.http.delete('http://localhost:5000/registrations/'+id).subscribe(_ => {
-    })
+  public delete(id: string) {
+    return this.http.delete('http://localhost:5000/registrations/'+id);
   }
 }
